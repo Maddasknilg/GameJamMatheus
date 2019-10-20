@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DialogManager : MonoBehaviour
 {
@@ -11,7 +12,12 @@ public class DialogManager : MonoBehaviour
 
     public GameObject dialogObj;
     public GameObject nameText;
-    public GameObject MessageText;
+    public GameObject messageText;
+
+    public GameObject nameTextInput;
+    public GameObject messageTextInput;
+
+    string nextName ="vv", nextMessage = "bb";
 
     private void Start()
     {
@@ -21,9 +27,9 @@ public class DialogManager : MonoBehaviour
     public void OpenSidePanel()
     {
 
-        if(State < 1)
+        if (State < 1)
         {
-            State++;
+            State++; 
         }
         else
         {
@@ -46,14 +52,33 @@ public class DialogManager : MonoBehaviour
     public void hideSpecs()
     {
         nameText.SetActive(false);
-        MessageText.SetActive(false);
+        messageText.SetActive(false);
     }
 
-    public void showSpecs()
+    public void showSpecs()//string _name, string _message)
     {
+        //nameText.GetComponent<TextMeshProUGUI>().text = _name.ToString();
+        // messageText.GetComponent<TextMeshProUGUI>().text = _name.ToString();
+
+        nameText.GetComponent<TextMeshProUGUI>().text = nextName.ToString();
+        messageText.GetComponent<TextMeshProUGUI>().text = nextMessage.ToString();
+
         nameText.SetActive(true);
-        MessageText.SetActive(true);
+        messageText.SetActive(true);
     }
 
+    public void nextDialog(string _name, string _message)
+    {
+        nextName = _name.ToString();
+        nextMessage = _name.ToString();
+    }
 
-}
+    public void nextDialogInput()
+    {
+        nextName = nameTextInput.GetComponent<TextMeshProUGUI>().text.ToString();
+        //nextMessage = messageTextInput.GetComponent<TextMeshProUGUI>().text.ToString();
+
+        nextName = "dfsdfsfsd";
+    }
+
+}   
